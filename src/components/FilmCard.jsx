@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import PropTypes from 'prop-types'; // Add prop type validation
+import PropTypes from 'prop-types'; 
 
-// Default gradient fallback
-const defaultGradient = 'from-gray-500 to-gray-600';
+const defaultGradient = 'from-red-500 to-red-600';
 
 export default function FilmCard({ film = {} }) {
     const [isHovered, setIsHovered] = useState(false);
@@ -15,7 +14,7 @@ export default function FilmCard({ film = {} }) {
         try {
             const firstChar = titre.charCodeAt(0) % 5;
             const gradients = [
-                'from-purple-500 to-indigo-600',
+                'from-red-500 to-red-600',
                 'from-pink-500 to-rose-600',
                 'from-cyan-500 to-blue-600',
                 'from-amber-500 to-orange-600',
@@ -27,7 +26,6 @@ export default function FilmCard({ film = {} }) {
         }
     };
     
-    // Safely destructure with defaults
     const { 
         titre = 'Untitred Film',
         image = '/api/placeholder/400/600',
@@ -51,7 +49,6 @@ export default function FilmCard({ film = {} }) {
         >
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent z-10"></div>
             
-            {/* Film poster */}
             <div className="h-full w-full">
                 <img
                     src={image}
@@ -61,19 +58,15 @@ export default function FilmCard({ film = {} }) {
                 />
             </div>
             
-            {/* Content overlay */}
             <div className="absolute bottom-0 left-0 right-0 p-6 z-20 transform transition-transform duration-300"
                 style={{ transform: isHovered ? 'translateY(0)' : 'translateY(20%)' }}>
                 
-                {/* Badge for genre/category */}
                 <div className={`inline-block px-3 py-1 mb-3 text-xs font-medium text-white rounded-full bg-gradient-to-r ${getGradientBytitre(titre)}`}>
                     {genre}
                 </div>
                 
-                {/* titre */}
                 <h3 className="text-2xl font-bold text-white mb-2">{titre}</h3>
                 
-                {/* Description */}
                 <motion.p 
                     className="text-gray-200 text-sm mb-4 line-clamp-2"
                     initial={{ opacity: 0 }}
@@ -83,7 +76,6 @@ export default function FilmCard({ film = {} }) {
                     {description.slice(0, 100)}...
                 </motion.p>
                 
-                {/* Action button */}
                 <Link
                     to={`/films/${id}`}
                     className="inline-flex items-center px-4 py-2 rounded-lg bg-white text-indigo-600 font-medium transition-all hover:bg-indigo-100"

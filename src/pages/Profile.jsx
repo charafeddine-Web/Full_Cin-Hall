@@ -107,17 +107,17 @@ export default function Profile() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 mt-14">
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 mt-12">
             {/* Top profile banner */}
-            <div className="bg-gradient-to-r from-indigo-700 to-purple-700 text-white py-12 px-4 sm:px-6 lg:px-8">
+            <div className="bg-gradient-to-r from-red-700 to-black text-white py-12 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-5xl mx-auto">
                     <div className="flex flex-col md:flex-row items-center md:items-end space-y-4 md:space-y-0 md:space-x-6">
-                        <div className="h-24 w-24 bg-white rounded-full flex items-center justify-center text-indigo-700 text-4xl font-bold shadow-lg">
+                        <div className="h-24 w-24 bg-white rounded-full flex items-center justify-center text-red-700 text-4xl font-bold shadow-lg">
                             {user?.name?.charAt(0).toUpperCase() || '?'}
                         </div>
                         <div className="text-center md:text-left">
                             <h1 className="text-3xl font-bold">{user?.name || 'Loading...'}</h1>
-                            <p className="text-indigo-200">{user?.email || ''}</p>
+                            <p className="text-red-200">{user?.email || ''}</p>
                         </div>
                     </div>
                 </div>
@@ -140,14 +140,14 @@ export default function Profile() {
                 )}
 
                 {/* Tabs */}
-                <div className="mb-6 border-b border-gray-200">
+                <div className="mb-6 border-b border-gray-200 dark:border-gray-700">
                     <nav className="-mb-px flex space-x-6 overflow-x-auto">
                         <button
                             onClick={() => setActiveTab('profile')}
                             className={`pb-4 px-1 font-medium text-sm transition-colors duration-200 whitespace-nowrap ${
                                 activeTab === 'profile'
-                                    ? 'border-b-2 border-indigo-500 text-indigo-600'
-                                    : 'text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                                    ? 'border-b-2 border-red-500 text-red-600 dark:text-red-400'
+                                    : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 hover:border-gray-300'
                             }`}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -159,8 +159,8 @@ export default function Profile() {
                             onClick={() => setActiveTab('reservations')}
                             className={`pb-4 px-1 font-medium text-sm transition-colors duration-200 whitespace-nowrap ${
                                 activeTab === 'reservations'
-                                    ? 'border-b-2 border-indigo-500 text-indigo-600'
-                                    : 'text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                                    ? 'border-b-2 border-red-500 text-red-600 dark:text-red-400'
+                                    : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 hover:border-gray-300'
                             }`}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -172,8 +172,8 @@ export default function Profile() {
                             onClick={() => setActiveTab('settings')}
                             className={`pb-4 px-1 font-medium text-sm transition-colors duration-200 whitespace-nowrap ${
                                 activeTab === 'settings'
-                                    ? 'border-b-2 border-indigo-500 text-indigo-600'
-                                    : 'text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                                    ? 'border-b-2 border-red-500 text-red-600 dark:text-red-400'
+                                    : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 hover:border-gray-300'
                             }`}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -187,26 +187,26 @@ export default function Profile() {
 
                 {/* Profile Tab Content */}
                 {activeTab === 'profile' && (
-                    <div className="bg-white shadow-md rounded-lg p-6 md:p-8 animate-fade-in">
-                        <h2 className="text-2xl font-bold mb-6 text-gray-800">Informations personnelles</h2>
+                    <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 md:p-8 animate-fade-in">
+                        <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Informations personnelles</h2>
                         <form onSubmit={handleUpdate} className="space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
-                                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Nom</label>
+                                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nom</label>
                                     <input
                                         type="text"
                                         id="name"
-                                        className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
+                                        className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:text-white transition-colors"
                                         value={name}
                                         onChange={(e) => setName(e.target.value)}
                                     />
                                 </div>
                                 <div>
-                                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
                                     <input
                                         type="email"
                                         id="email"
-                                        className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
+                                        className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:text-white transition-colors"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                     />
@@ -219,7 +219,7 @@ export default function Profile() {
                                     className={`px-6 py-3 rounded-md font-medium transition-all ${
                                         loading
                                             ? 'bg-gray-400 cursor-not-allowed'
-                                            : 'bg-indigo-600 hover:bg-indigo-700 text-white shadow-md hover:shadow-lg'
+                                            : 'bg-red-600 hover:bg-red-700 text-white shadow-md hover:shadow-lg'
                                     }`}
                                 >
                                     {loading ? (
@@ -243,10 +243,10 @@ export default function Profile() {
                 {activeTab === 'reservations' && (
                     <div className="animate-fade-in">
                         <div className="flex justify-between items-center mb-6">
-                            <h2 className="text-2xl font-bold text-gray-800">Mes réservations</h2>
+                            <h2 className="text-2xl font-bold text-gray-800 dark:text-white">Mes réservations</h2>
                             <Link 
                                 to="/films" 
-                                className="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors"
+                                className="inline-flex items-center px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -257,20 +257,20 @@ export default function Profile() {
 
                         {reservationsLoading ? (
                             <div className="flex justify-center items-center py-12">
-                                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
+                                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-500"></div>
                             </div>
                         ) : reservations.length === 0 ? (
-                            <div className="bg-white shadow-md rounded-lg p-12 text-center">
-                                <div className="inline-block p-6 rounded-full bg-gray-100 mb-4">
+                            <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-12 text-center">
+                                <div className="inline-block p-6 rounded-full bg-gray-100 dark:bg-gray-700 mb-4">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
                                     </svg>
                                 </div>
-                                <h3 className="text-xl font-medium text-gray-700 mb-2">Aucune réservation</h3>
-                                <p className="text-gray-500 mb-6">Vous n'avez pas encore de réservations.</p>
+                                <h3 className="text-xl font-medium text-gray-700 dark:text-gray-300 mb-2">Aucune réservation</h3>
+                                <p className="text-gray-500 dark:text-gray-400 mb-6">Vous n'avez pas encore de réservations.</p>
                                 <Link 
                                     to="/films" 
-                                    className="px-6 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors inline-block"
+                                    className="px-6 py-3 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors inline-block"
                                 >
                                     Découvrir les films
                                 </Link>
@@ -283,7 +283,7 @@ export default function Profile() {
                                     const isCancelled = reservation.cancelled;
                                     
                                     return (
-                                        <div key={reservation.id} className="bg-white shadow-md rounded-lg overflow-hidden">
+                                        <div key={reservation.id} className="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
                                             <div className="md:flex">
                                                 {/* Movie poster */}
                                                 <div className="md:flex-shrink-0">
@@ -301,9 +301,9 @@ export default function Profile() {
                                                         {status.label}
                                                     </span>
                                                     
-                                                    <h3 className="text-xl font-bold text-gray-800 mb-2">{reservation.film?.title}</h3>
+                                                    <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">{reservation.film?.title}</h3>
                                                     
-                                                    <div className="mb-4 space-y-2 text-sm text-gray-600">
+                                                    <div className="mb-4 space-y-2 text-sm text-gray-600 dark:text-gray-300">
                                                         <p className="flex items-center">
                                                             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -325,16 +325,16 @@ export default function Profile() {
                                                     </div>
                                                     
                                                     {/* Price */}
-                                                    <div className="text-lg font-bold text-indigo-600 mb-4">
+                                                    <div className="text-lg font-bold text-red-600 dark:text-red-500 mb-4">
                                                         {(reservation.price || 9.90) * reservation.seats}€
                                                     </div>
                                                 </div>
                                                 
                                                 {/* Actions */}
-                                                <div className="p-6 bg-gray-50 flex flex-col justify-center space-y-3 md:w-64">
+                                                <div className="p-6 bg-gray-50 dark:bg-gray-700 flex flex-col justify-center space-y-3 md:w-64">
                                                     <button
                                                         onClick={() => downloadTicket(reservation.id)}
-                                                        className="flex items-center justify-center px-4 py-2 border border-indigo-600 text-indigo-600 rounded-md hover:bg-indigo-50 transition-colors w-full"
+                                                        className="flex items-center justify-center px-4 py-2 border border-red-600 text-red-600 dark:text-red-500 dark:border-red-500 rounded-md hover:bg-red-50 dark:hover:bg-gray-600 transition-colors w-full"
                                                     >
                                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -346,7 +346,7 @@ export default function Profile() {
                                                         <>
                                                             <Link 
                                                                 to={`/reservations/${reservation.id}/edit`}
-                                                                className="flex items-center justify-center px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-100 transition-colors w-full"
+                                                                className="flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-md hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors w-full"
                                                             >
                                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -356,7 +356,7 @@ export default function Profile() {
                                                             
                                                             <button 
                                                                 onClick={() => handleCancelReservation(reservation.id)}
-                                                                className="flex items-center justify-center px-4 py-2 border border-red-500 text-red-500 rounded-md hover:bg-red-50 transition-colors w-full"
+                                                                className="flex items-center justify-center px-4 py-2 border border-red-500 text-red-500 rounded-md hover:bg-red-50 dark:hover:bg-gray-600 transition-colors w-full"
                                                             >
                                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -377,72 +377,72 @@ export default function Profile() {
 
                 {/* Settings Tab Content */}
                 {activeTab === 'settings' && (
-                    <div className="bg-white shadow-md rounded-lg p-6 md:p-8 animate-fade-in">
-                        <h2 className="text-2xl font-bold mb-6 text-gray-800">Paramètres du compte</h2>
+                    <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 md:p-8 animate-fade-in">
+                        <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Paramètres du compte</h2>
                         
                         <div className="space-y-6">
                             {/* Notification Preferences */}
-                            <div className="pb-6 border-b border-gray-200">
-                                <h3 className="text-lg font-medium text-gray-800 mb-4">Préférences de notification</h3>
+                            <div className="pb-6 border-b border-gray-200 dark:border-gray-700">
+                                <h3 className="text-lg font-medium text-gray-800 dark:text-white mb-4">Préférences de notification</h3>
                                 
                                 <div className="space-y-3">
                                     <div className="flex items-center justify-between">
                                         <div>
-                                            <p className="font-medium text-gray-700">Emails promotionnels</p>
-                                            <p className="text-sm text-gray-500">Recevez des offres spéciales et des réductions</p>
+                                            <p className="font-medium text-gray-700 dark:text-gray-300">Emails promotionnels</p>
+                                            <p className="text-sm text-gray-500 dark:text-gray-400">Recevez des offres spéciales et des réductions</p>
                                         </div>
                                         <label className="relative inline-flex items-center cursor-pointer">
                                             <input type="checkbox" value="" className="sr-only peer" defaultChecked />
-                                            <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+                                            <div className="w-11 h-6 bg-gray-200 dark:bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-red-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-600"></div>
                                         </label>
                                     </div>
                                     
                                     <div className="flex items-center justify-between">
                                         <div>
-                                            <p className="font-medium text-gray-700">Notifications de réservation</p>
-                                            <p className="text-sm text-gray-500">Recevez des rappels pour vos séances</p>
+                                            <p className="font-medium text-gray-700 dark:text-gray-300">Notifications de réservation</p>
+                                            <p className="text-sm text-gray-500 dark:text-gray-400">Recevez des rappels pour vos séances</p>
                                         </div>
                                         <label className="relative inline-flex items-center cursor-pointer">
                                             <input type="checkbox" value="" className="sr-only peer" defaultChecked />
-                                            <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+                                            <div className="w-11 h-6 bg-gray-200 dark:bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-red-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-600"></div>
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             
                             {/* Password Change */}
-                            <div className="pb-6 border-b border-gray-200">
-                                <h3 className="text-lg font-medium text-gray-800 mb-4">Changer le mot de passe</h3>
+                            <div className="pb-6 border-b border-gray-200 dark:border-gray-700">
+                                <h3 className="text-lg font-medium text-gray-800 dark:text-white mb-4">Changer le mot de passe</h3>
                                 
                                 <form className="space-y-4">
                                     <div>
-                                        <label htmlFor="current-password" className="block text-sm font-medium text-gray-700 mb-1">Mot de passe actuel</label>
+                                        <label htmlFor="current-password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Mot de passe actuel</label>
                                         <input
                                             type="password"
                                             id="current-password"
-                                            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
+                                            className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:text-white transition-colors"
                                         />
                                     </div>
                                     <div>
-                                        <label htmlFor="new-password" className="block text-sm font-medium text-gray-700 mb-1">Nouveau mot de passe</label>
+                                        <label htmlFor="new-password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nouveau mot de passe</label>
                                         <input
                                             type="password"
                                             id="new-password"
-                                            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
+                                            className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:text-white transition-colors"
                                         />
                                     </div>
                                     <div>
-                                        <label htmlFor="confirm-password" className="block text-sm font-medium text-gray-700 mb-1">Confirmer le nouveau mot de passe</label>
+                                        <label htmlFor="confirm-password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Confirmer le nouveau mot de passe</label>
                                         <input
                                             type="password"
                                             id="confirm-password"
-                                            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
+                                            className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500 dark:bg-gray-700 dark:text-white transition-colors"
                                         />
                                     </div>
                                     <div className="pt-2">
                                         <button
                                             type="submit"
-                                            className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md font-medium transition-colors"
+                                            className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
                                         >
                                             Mettre à jour le mot de passe
                                         </button>
@@ -450,28 +450,23 @@ export default function Profile() {
                                 </form>
                             </div>
                             
-                            {/* Danger Zone */}
+                            {/* Delete Account */}
                             <div>
-                            <h3 className="text-lg font-medium text-red-500 mb-4">Zone dangereuse</h3>
-                                
-                                <div className="bg-red-50 border border-red-200 rounded-md p-4">
-                                    <h4 className="font-medium text-red-700 mb-2">Supprimer mon compte</h4>
-                                    <p className="text-sm text-red-600 mb-4">
-                                        Attention : cette action est irréversible et supprimera toutes vos données, y compris votre historique de réservations.
-                                    </p>
-                                    <button
-                                        type="button"
-                                        className="px-4 py-2 bg-white border border-red-500 text-red-500 rounded-md hover:bg-red-50 font-medium transition-colors"
-                                        onClick={() => {
-                                            if (window.confirm("Êtes-vous sûr de vouloir supprimer définitivement votre compte ?")) {
-                                                // Handle account deletion
-                                                alert("Cette fonctionnalité n'est pas encore implémentée");
-                                            }
-                                        }}
-                                    >
-                                        Supprimer mon compte
-                                    </button>
-                                </div>
+                                <h3 className="text-lg font-medium text-gray-800 dark:text-white mb-4">Supprimer le compte</h3>
+                                <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+                                    Attention : la suppression de votre compte est irréversible et entraînera la perte de toutes vos données, y compris votre historique de réservations.
+                                </p>
+                                <button
+                                    className="px-4 py-2 border border-red-500 text-red-500 rounded-md hover:bg-red-50 dark:hover:bg-gray-600 transition-colors"
+                                    onClick={() => {
+                                        if (window.confirm('Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.')) {
+                                            // Implement account deletion logic here
+                                            console.log('Account deletion requested');
+                                        }
+                                    }}
+                                >
+                                    Supprimer mon compte
+                                </button>
                             </div>
                         </div>
                     </div>
