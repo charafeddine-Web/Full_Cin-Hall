@@ -25,13 +25,14 @@ export const fetchFilms = async () => {
 
 export const fetchSeancesByFilm = async (filmId) => {
     try {
-        const res = await api.get(`/seances/${filmId}`);
+        const res = await api.get(`/seances?film_id=${filmId}`);
         return res.data;
     } catch (error) {
-        console.error(`Error fetching seances for film ${filmId}:`, error);
+        console.error(`Erreur lors du chargement des séances du film ${filmId}`, error);
         throw error;
     }
 };
+
 
 export const fetchSeancesByType = async (type) => {
     try {
