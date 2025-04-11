@@ -14,10 +14,17 @@ export default function SeatReservation() {
     useEffect(() => {
         setLoading(true);
         getSeatsBySeance(seanceId)
-            .then(fetchedSeats => setSeats(fetchedSeats))
-            .catch(err => setError('Erreur lors du chargement des sièges.'))
+            .then(fetchedSeats => {
+                console.log('Fetched seats:', fetchedSeats); // <== add this
+                setSeats(fetchedSeats);
+            })
+            .catch(err => {
+                console.error(err); // <== add this
+                setError('Erreur lors du chargement des sièges.');
+            })
             .finally(() => setLoading(false));
     }, [seanceId]);
+    
 
     const handleReserve = async () => {
         if (selectedSeats.length === 0) {
@@ -37,13 +44,13 @@ export default function SeatReservation() {
     };
 
     return (
-        <div className="p-4">
+        <div className="p-4 mt-14">
             <h2 className="text-xl mb-4">Choisissez vos places</h2>
             {error && <div className="text-red-600 mb-4">{error}</div>}
             {loading ? (
                 <div>Chargement...</div>
             ) : (
-                <SeatSelector seats={seats} selected={selectedSeats} onChange={setSelectedSeats} />
+                <SeatSelector seats={seats} selected={selectedSeats} onSeatSelect={setSelectedSeats} />
             )}
             <button 
                 onClick={handleReserve} 
