@@ -58,7 +58,7 @@ export default function Navbar() {
                         
                         {/* Desktop Navigation */}
                         <div className="hidden md:flex items-center space-x-4 lg:space-x-8">
-                            <Link to="/films" className={`font-medium hover:text-red-400 transition-colors ${
+                            {/* <Link to="/films" className={`font-medium hover:text-red-400 transition-colors ${
                                 isScrolled ? 'text-gray-300' : 'text-gray-100'
                             }`}>
                                 Films
@@ -72,7 +72,7 @@ export default function Navbar() {
                                 isScrolled ? 'text-gray-300' : 'text-gray-100'
                             }`}>
                                 Tarifs
-                            </Link>
+                            </Link> */}
                             
                             {user ? (
                                 <div className="flex items-center space-x-4 ml-4">
@@ -188,7 +188,7 @@ export default function Navbar() {
                                 >
                                     <span className="font-medium">Films</span>
                                 </Link>
-                                <Link 
+                                {/* <Link 
                                     to="/schedule" 
                                     className={`block py-3 px-4 rounded-xl ${
                                         isScrolled 
@@ -209,7 +209,7 @@ export default function Navbar() {
                                     onClick={() => setMobileMenuOpen(false)}
                                 >
                                     <span className="font-medium">Tarifs</span>
-                                </Link>
+                                </Link> */}
                                 
                                 <div className="pt-3 mt-3 border-t border-gray-800">
                                     {user ? (

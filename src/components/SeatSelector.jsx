@@ -4,7 +4,7 @@ export default function SeatSelector({ seats, onSeatSelect }) {
     const [selectedSeats, setSelectedSeats] = useState([]);
 
     useEffect(() => {
-        onSeatSelect(selectedSeats); // Propager les sièges sélectionnés vers le parent
+        onSeatSelect(selectedSeats); 
     }, [selectedSeats, onSeatSelect]);
 
     const handleSeatClick = (seat) => {
