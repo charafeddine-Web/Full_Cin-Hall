@@ -2,8 +2,8 @@
 import api from './api';
 
 export const reserveSeats = async (data) => {
-    const res = await api.post('/reservations', data);
-    return res.data;
+    const res = await api.post('/reservations', data).then(res => res.data);
+
 };
 
 export const confirmReservation = async (id) => {
@@ -25,6 +25,6 @@ export const getUserReservations = async () => {
 
 // Récupérer les sièges disponibles pour une séance donnée
 export const getSeatsBySeance = async (seanceId) => {
-    const res = await api.get(`/seances/${seanceId}/seats`);
+    const res = await api.get(`/seances/${seanceId}/sieges`);
     return res.data;
 };

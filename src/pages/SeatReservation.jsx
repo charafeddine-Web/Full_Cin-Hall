@@ -15,18 +15,20 @@ export default function SeatReservation() {
         setLoading(true);
         getSeatsBySeance(seanceId)
             .then(fetchedSeats => {
-                console.log('Fetched seats:', fetchedSeats); // <== add this
+                console.log('Fetched seats:', fetchedSeats);
                 setSeats(fetchedSeats);
             })
             .catch(err => {
-                console.error(err); // <== add this
+                console.error(err); 
                 setError('Erreur lors du chargement des sièges.');
             })
             .finally(() => setLoading(false));
     }, [seanceId]);
-    
 
     const handleReserve = async () => {
+
+        setError('');
+
         if (selectedSeats.length === 0) {
             setError('Veuillez sélectionner au moins une place.');
             return;
@@ -34,27 +36,46 @@ export default function SeatReservation() {
 
         setLoading(true);
         try {
-            const reservation = await reserveSeats(seanceId, selectedSeats);
+            const data = {
+                seance_id: seanceId,
+                seat_ids: selectedSeats,
+            };
+            console.log('Data envoyé pour réservation:', data);
+
+            const reservation = await reserveSeats(data);
+            console.log('Reservation created:', reservation);
+            console.log('Navigation vers la page paiement...');
             navigate(`/payment/${reservation.id}`);
         } catch (err) {
+            console.error(err);
             setError('Erreur lors de la réservation des places.');
         } finally {
             setLoading(false);
         }
+
+        console.log('Réservation démarrée...');
+
     };
 
     return (
         <div className="p-4 mt-14">
-            <h2 className="text-xl mb-4">Choisissez vos places</h2>
+            <h2 className="text-xl font-semibold mb-4">Choisissez vos places</h2>
+            
             {error && <div className="text-red-600 mb-4">{error}</div>}
+
             {loading ? (
                 <div>Chargement...</div>
             ) : (
-                <SeatSelector seats={seats} selected={selectedSeats} onSeatSelect={setSelectedSeats} />
+                <SeatSelector 
+                    seats={seats} 
+                    selected={selectedSeats} 
+                    onSeatSelect={setSelectedSeats} 
+                />
             )}
+
             <button 
                 onClick={handleReserve} 
-                className="mt-4 bg-green-600 text-white px-4 py-2" 
+                className={`mt-4 px-4 py-2 rounded text-white ${loading || selectedSeats.length === 0 ? 'bg-gray-400' : 'bg-green-600 hover:bg-green-700'}`}
                 disabled={loading || selectedSeats.length === 0}
             >
                 {loading ? 'Réservation en cours...' : 'Confirmer la réservation'}

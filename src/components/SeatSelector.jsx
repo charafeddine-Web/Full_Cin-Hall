@@ -8,7 +8,7 @@ export default function SeatSelector({ seats, onSeatSelect }) {
     }, [selectedSeats, onSeatSelect]);
 
     const handleSeatClick = (seat) => {
-        if (seat.status === 'available') {
+        if (seat.reserve === false) {
             setSelectedSeats((prev) =>
                 prev.includes(seat.id) ? prev.filter((id) => id !== seat.id) : [...prev, seat.id]
             );
@@ -21,12 +21,10 @@ export default function SeatSelector({ seats, onSeatSelect }) {
                 <div
                     key={seat.id}
                     className={`seat p-4 border text-center rounded-lg cursor-pointer ${
-                        seat.status === 'available'
-                            ? 'bg-green-200 hover:bg-green-300'
-                            : seat.status === 'reserved'
-                                ? 'bg-gray-300'
-                                : 'bg-red-300'
-                    } ${selectedSeats.includes(seat.id) ? 'border-blue-500' : ''}`}
+                        seat.reserve === false ? 'bg-green-500 hover:bg-green-700': seat.reserve === true
+                                ? 'bg-red-500'
+                                : 'bg-gray-500'
+                    } ${selectedSeats.includes(seat.id) ? 'border-2 border-blue-500 ' : ''}`}
                     onClick={() => handleSeatClick(seat)}
                 >
                     {seat.label}
