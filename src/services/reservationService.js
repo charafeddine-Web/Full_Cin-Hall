@@ -2,8 +2,13 @@
 import api from './api';
 
 export const reserveSeats = async (data) => {
-    const res = await api.post('/reservations', data).then(res => res.data);
-
+    try {
+        const response = await api.post('/reservations', data);
+        return response.data; 
+    } catch (error) {
+        console.error('Erreur lors de la réservation:', error);
+        throw error; 
+    }
 };
 
 export const confirmReservation = async (id) => {

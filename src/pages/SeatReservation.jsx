@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getSeatsBySeance, reserveSeats } from '../services/reservationService';
 import SeatSelector from '../components/SeatSelector';
+import { AuthContext } from '../context/AuthContext'; 
 
 export default function SeatReservation() {
     const { seanceId } = useParams();
@@ -10,6 +11,8 @@ export default function SeatReservation() {
     const [loading, setLoading] = useState(false); 
     const [error, setError] = useState('');
     const navigate = useNavigate();
+
+    const { user } = useContext(AuthContext); 
 
     useEffect(() => {
         setLoading(true);
@@ -26,6 +29,10 @@ export default function SeatReservation() {
     }, [seanceId]);
 
     const handleReserve = async () => {
+        if (!user || !user.id) {
+            setError('Utilisateur non connecté');
+            return;
+        }
 
         setError('');
 
@@ -36,23 +43,32 @@ export default function SeatReservation() {
 
         setLoading(true);
         try {
-            const data = {
-                seance_id: seanceId,
-                seat_ids: selectedSeats,
-            };
-            console.log('Data envoyé pour réservation:', data);
+                const data = {
+                    user_id: user.id,
+                    seance_id: seanceId,
+                    siege_id:  selectedSeats,
+                };
+                console.log('Data envoyé pour réservation:', data);
 
-            // const reservation = await reserveSeats(data);
-            try {
-                await reserveSeats(data); // ton appel axios
-              } catch (error) {
-                console.error('Erreur axios', error.response.data);
-              }
-                  
-            console.log('Reservation created:', reservation);
-            console.log('Navigation vers la page paiement...');
-            navigate(`/payment/${reservation.id}`);
-        } catch (err) {
+                
+                    const reservation = await reserveSeats(data); 
+                    console.log("Réservation confirmée :", reservation);
+                
+                    if (reservation?.message) {
+                        // Si le message indique le succès de la réservation
+                        console.log('Réservation réussie:', reservation.message);
+                     navigate(`/paiement/${reservation.id}`);
+            } else {
+                        console.error("Réservation échouée ou message manquant", reservation);
+                        setError('Erreur lors de la réservation.');
+                    }
+                // if (reservation?.id) {
+                //     navigate(`/paiement/${reservation.id}`);
+                // } else {
+                //     console.error("Réservation échouée ou id manquant", reservation);
+                //     setError("Erreur de réservation, veuillez réessayer.");
+                // }
+            } catch (err) {
             console.error(err);
             setError('Erreur lors de la réservation des places.');
         } finally {
