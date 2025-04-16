@@ -42,7 +42,13 @@ export default function SeatReservation() {
             };
             console.log('Data envoyé pour réservation:', data);
 
-            const reservation = await reserveSeats(data);
+            // const reservation = await reserveSeats(data);
+            try {
+                await reserveSeats(data); // ton appel axios
+              } catch (error) {
+                console.error('Erreur axios', error.response.data);
+              }
+                  
             console.log('Reservation created:', reservation);
             console.log('Navigation vers la page paiement...');
             navigate(`/payment/${reservation.id}`);
@@ -53,7 +59,6 @@ export default function SeatReservation() {
             setLoading(false);
         }
 
-        console.log('Réservation démarrée...');
 
     };
 
